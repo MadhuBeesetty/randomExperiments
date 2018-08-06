@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import RenderResults from './components/renderResults';
 
 const API_KEY = "AIzaSyAK6B2xOb4MkJK33Ls1UcNBcY6Q5gyqwWM";
 const cx = "017221110988465393220:4e6dhnh4avk";
@@ -10,6 +10,7 @@ class App extends Component {
     super();
 this.state={
   search:'',
+  data:[],
 }
 };
 
@@ -22,21 +23,16 @@ googleSearch = async () => {
     const connect_api = await fetch(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${cx}&q=${this.state.search}`);
     const data = await connect_api.json();
     console.log(data);
+    if(data){this.setState({data: data.items})}
   }
 
   render() {
     console.log(this.state)
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
         <input type="text" name="search" onChange={this.change} />
         <input type="submit" onClick={this.googleSearch} />
+      <RenderResults data={this.state.data} />
       </div>
     );
   }
