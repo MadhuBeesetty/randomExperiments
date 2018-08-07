@@ -13,11 +13,8 @@ change = (e) => {
 };
 
 bingSearch = () => {
-  console.log('hi');
   fetch(`http://localhost:3655/search?q=${this.state.data}`)
-  console.log('done and dusted');
 }
-
 
   render() {
     console.log(this.state);

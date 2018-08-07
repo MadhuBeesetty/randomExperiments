@@ -16,7 +16,4 @@ app.get('/search',(req,res)=>{
   console.log('i am here');
   const {q} = req.query;
   console.log(q);
-  const results = '';
- 
-  res.send(results);
 })
