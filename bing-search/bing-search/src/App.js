@@ -12,9 +12,11 @@ change = (e) => {
   this.setState({[e.target.name]: e.target.value})
 };
 
-bingSearch = () => {
-  fetch(`http://localhost:3655/search?q=${this.state.data}`)
-}
+bingSearch = async () => {
+  const connect_api = await fetch(`http://localhost:3655/search?q=${this.state.data}`)
+  const data = await connect_api.json();
+  console.log(data.webPages.value);
+};
 
   render() {
     console.log(this.state);
